@@ -7,7 +7,9 @@ export const fetchCurrentAuthUser = createAsyncThunk(
   async (token, { rejectWithValue }) => {
     try {
       const res = await api.CurrentAuthUser(token);
+      console.log("fetchCurrentUser",res.data)
       return res.data;
+
     } catch (error) {
       return rejectWithValue(
         error.response?.data?.message || "Auth check failed"

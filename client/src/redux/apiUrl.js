@@ -1,5 +1,5 @@
 
-const Use_Local = true
+const Use_Local = false
 
 const BASE_DOMAIN = Use_Local ? "https://foodify2.onrender.com": "http://localhost:5004"
 
