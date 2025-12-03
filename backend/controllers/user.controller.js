@@ -3,7 +3,7 @@ import Restaurant from "../models/restaurant.model.js";
 import Product from "../models/product.model.js";
 import Order from "../models/order.model.js";
 import Cart from "../models/cart.model.js";
-import  Review from "../models/review.model.js";
+import Review from "../models/review.model.js";
 
 export const getCurrentUser = async (req, res) => {
   try {
@@ -28,28 +28,28 @@ export const handleClerkWebhook = async (req, res) => {
   try {
     const event = req.event;
     const { type, data } = event;
-
+    console.log(JSON.stringify(data, null, 2)); 
     // User created
 
     if (type === "user.created") {
       const clerkId = data.id;
       const existingUser = await User.findOne({ clerkId });
-
       if (!existingUser) {
         const newUser = new User({
           clerkId,
           fullName: data.first_name
             ? `${data.first_name} ${data.last_name || ""}`.trim()
             : "Anonymous",
-          email: data.email_addres?.[0]?.email_addres || "",
+          email: data.email_addresses?.[0]?.email_address || "",
           profileImage: data.image_url || "",
           role: "buyer",
         });
-        await newUser.save()
+
+        await newUser.save();
       }
     }
 
-     // -------------------------------------------------
+    // -------------------------------------------------
     // USER UPDATED
     // -------------------------------------------------
     else if (type === "user.updated") {
@@ -143,13 +143,12 @@ export const handleClerkWebhook = async (req, res) => {
       await Promise.all(dbTasks);
     }
     res.status(200).json({
-        message:"WebHook processed"
-    })
-
+      message: "WebHook processed",
+    });
   } catch (error) {
-    console.error("Webhook error", error.message)
+    console.error("Webhook error", error.message);
     res.status(500).json({
-        message:"Internal Server error"
-    })
+      message: "Internal Server error",
+    });
   }
 };

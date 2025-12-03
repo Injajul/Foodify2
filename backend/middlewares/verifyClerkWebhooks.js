@@ -13,6 +13,7 @@ if (!WEBHOOK_SECRET) {
 export const verifyClerkWebhooks = async (req, res, next) => {
   try {
     const playload = req.body;
+    
     const headers = {
       "svix-id": req.headers["svix-id"],
       "svix-timestamp": req.headers["svix-timestamp"],

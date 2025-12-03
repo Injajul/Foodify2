@@ -11,8 +11,8 @@ import userRoute from "./routes/user.route.js"
 const app = express()
 
 // Frontend URL
-const Base_URL = false
-const allowedOrigins =Base_URL ? "cccc":"http://localhost:5173"
+const Base_URL = true
+const allowedOrigins =Base_URL ? "https://foodify2-six.vercel.app":"http://localhost:5173"
 
 app.use(
     cors({

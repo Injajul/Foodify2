@@ -1,6 +1,6 @@
 
-const Use_Local = false 
+const Use_Local = true
 
-const BASE_DOMAIN = Use_Local ? "bbb": "http://localhost:5004"
+const BASE_DOMAIN = Use_Local ? "https://foodify2.onrender.com": "http://localhost:5004"
 
 export const API_BASE_URL = `${BASE_DOMAIN}/api`

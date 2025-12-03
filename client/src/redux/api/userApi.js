@@ -8,7 +8,7 @@ const api = axios.create({
 });
 
 export const CurrentAuthUser = (token) =>
-  api.get("me/", {
+  api.get("/me", {
     headers: {
       Authorization: `Bearer ${token}`,
     },
